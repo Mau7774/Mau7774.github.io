@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cumpleaños Lore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* Estilos responsive básicos */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fce4ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .birthdayCard {
+      width: 90%;
+      max-width: 400px;
+      background: #fff0f5;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .cardFront, .cardInside {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .front-text h3, .front-text h2,
+    .inside-text h3, .inside-text h2 {
+      margin: 10px 0;
+    }
+
+    .wishes {
+      font-size: 16px;
+    }
+
+    .plate, .cake, .flame {
+      margin: 0 auto;
+    }
+
+    @media (max-width: 400px) {
+      .wishes {
+        font-size: 14px;
+      }
+
+      .front-text h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUDIO -->
+  <audio id="audio" loop>
+    <source src="cumple.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <!-- TARJETA DE CUMPLEAÑOS -->
+  <div class="birthdayCard">
+    <div class="cardFront">
+      <div class="front-text">
+        <h3 class="happy">Feliz</h3>
+        <h2 class="bday">Cumpleaños</h2>
+        <h3 class="toyou">!</h3>  
+      </div>
+      <div class="wrap-deco">
+        <div class="decorations"></div>
+        <div class="decorationsTwo"></div>
+      </div> 
+      <div class="wrap-decoTwo">
+        <div class="decorations"></div>
+        <div class="decorationsThree"></div>
+      </div>
+      <div class="plate">
+        <div class="cake"></div>
+        <div class="flame"></div>
+      </div>
+    </div>  
+
+    <div class="cardInside">
+      <div class="inside-text">
+        <h3 class="happy">FELIZ</h3>
+        <h2 class="bday">CUMPLE</h2> 
+        <h3 class="toyou">LORE!</h3>  
+      </div>
+      <div class="wishes">
+        <p>Holaa Lore,</p>
+        <p>¡Espero que recuerdes este día durante el resto de tu vida, diviértete como una niña y disfruta como una reina! ¡Felices 31! 🖤</p>
+        <p class="name">Mau</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script para permitir reproducción en móviles -->
+  <script>
+    const audio = document.getElementById('audio');
+
+    // Si termina, vuelve a empezar (por si falla el loop en móviles)
+    audio.addEventListener('ended', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
+
+    // Activa el audio en el primer toque (por restricciones móviles)
+    window.addEventListener('touchstart', () => {
+      audio.play().catch(() => {});
+    }, { once: true });
+
+    // También funciona por click para escritorio
+    window.addEventListener('click', () => {
+      audio.play().catch(() => {});
+    }, { once: true });
+  </script>
+
+</body>
+</html>
